@@ -1,0 +1,276 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+
+@theme {
+  /* The strip of categories under the hero. */
+  --animate-marquee: marquee 48s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  --color-brand-black: #000000;
+  --color-brand-gray: #6b7280;
+  --color-brand-teal: #008c8c;
+  /* The deeper palette teal: white/90 on it is 4.76:1, where the lighter
+     #008C8C only reaches about 4.1:1. */
+  --color-brand-teal-dark: #0f766e;
+  /* PottoStore's own deep teal, for dark grounds that carry small yellow type:
+     yellow-light on it is about 5.9:1, where on #0F766E it is only 3.57:1. */
+  --color-teal-deep: #0a4f4a;
+  --color-teal-deep-2: #0d615b;
+  /* Refusals on the receipt. Only ever on white or as a fill. */
+  --color-decline: #b42318;
+  --color-brand-gold: #ca8a04;
+  --color-brand-yellow: #eab308;
+  --color-brand-yellow-light: #facc15;
+  --color-brand-yellow-dark: #bb8f06;
+  --color-brand-espresso: #332301;
+}
+
+@theme inline {
+
+  --font-sans: var(--font-poppins-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-poppins-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-header: var(--font-poppins-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-poppins-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-note: var(--font-note-face), ui-rounded, cursive;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-soft: var(--soft);
+  --color-brand: var(--brand);
+  --color-brand-fg: var(--brand-fg);
+  --color-highlight: var(--highlight);
+  --color-water-mark: var(--water-mark);
+
+  /* shadcn vocabulary */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  color-scheme: light;
+
+  /* Site vocabulary */
+  --canvas: oklch(1 0 0); /* #FFFFFF: plain white page */
+  --surface: oklch(1 0 0); /* cards, floating controls */
+  --surface-2: oklch(0.968 0.002 264.36); /* hover / inset fills: neutral, not warm */
+  --line: oklch(0.9 0.006 264.36);
+  --ink: oklch(0 0 0); /* #000000 */
+  --soft: oklch(0.551 0.0234 264.36); /* #6B7280 */
+  --brand: oklch(0.5109 0.0861 186.39); /* #0F766E: AA with white text */
+  --brand-fg: oklch(1 0 0);
+  --highlight: oklch(0.8606 0.1731 91.94); /* #FACC15: accent word on dark */
+
+  /* shadcn vocabulary */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0 0 0);
+
+  --primary: oklch(0.5109 0.0861 186.39); /* #0F766E */
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.968 0.014 92);
+  --secondary-foreground: oklch(0.2686 0.0541 82.31); /* #332301 */
+
+  --muted: oklch(0.97 0.004 264.36);
+  --muted-foreground: oklch(0.551 0.0234 264.36); /* #6B7280 */
+
+  --accent: oklch(0.955 0.045 95); /* yellow wash */
+  --accent-foreground: oklch(0.2686 0.0541 82.31); /* #332301 */
+
+  --destructive: oklch(0.577 0.245 27.325);
+
+  --border: oklch(0.9 0.006 264.36);
+  --input: oklch(0.9 0.006 264.36);
+  --ring: oklch(0.6002 0.1038 184.7); /* #0D9488 */
+
+  --chart-1: oklch(0.6002 0.1038 184.7); /* #0D9488 */
+  --chart-2: oklch(0.7952 0.1617 86.05); /* #EAB308 */
+  --chart-3: oklch(0.5109 0.0861 186.39); /* #0F766E */
+  --chart-4: oklch(0.6806 0.1423 75.83); /* #CA8A04 */
+  --chart-5: oklch(0.551 0.0234 264.36); /* #6B7280 */
+
+  --radius: 0.625rem;
+
+  --sidebar: oklch(0.985 0.008 92);
+  --sidebar-foreground: oklch(0 0 0);
+  --sidebar-primary: oklch(0.5109 0.0861 186.39);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.955 0.045 95);
+  --sidebar-accent-foreground: oklch(0.2686 0.0541 82.31);
+  --sidebar-border: oklch(0.9 0.006 264.36);
+  --sidebar-ring: oklch(0.6002 0.1038 184.7);
+  --water-mark: oklch(97% 0 0); /* ≈ #F5F5F5 */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
+/*
+ * The torn bottom edge of a till receipt: Store's signature shape. The mask's
+ * gradient is geometry, not decoration, and nothing is coloured by it. Set
+ * --tooth for the size. A box-shadow would be cut off with the edge, so put a
+ * filter: drop-shadow on the parent instead.
+ */
+@utility receipt-edge {
+  --tooth: 10px;
+  mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg)
+    50% / calc(2 * var(--tooth)) 100%;
+}
+
+/* The same tear on the top edge, for a band that starts where another ends. */
+@utility receipt-edge-top {
+  --tooth: 12px;
+  mask: conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg)
+    50% / calc(2 * var(--tooth)) 100%;
+}
+
+/*
+ * A swing tag: clipped shoulders and a punched hole the ground shows through.
+ * The string is drawn separately by the catalogue section.
+ */
+@utility swing-tag {
+  --hole: 0.6rem;
+  clip-path: polygon(24% 0, 76% 0, 100% 2.75rem, 100% 100%, 0 100%, 0 2.75rem);
+  mask: radial-gradient(
+    circle var(--hole) at 50% 1.6rem,
+    #0000 calc(100% - 0.5px),
+    #000 100%
+  );
+}
+
+/* A dotted leader, as between an item and its price on a receipt. */
+@utility leader {
+  flex: 1 1 auto;
+  min-width: 1rem;
+  height: 0.8em;
+  border-bottom: 1.5px dotted currentColor;
+  opacity: 0.35;
+}
+
+/* Numbers line up, in the receipt face. */
+/*
+ * The naira sign, drawn: neither Poppins nor Geist Mono has the glyph, and the
+ * system fallback comes out heavier and varies by device. This is the face's
+ * own N with two strokes across it. Use the naira() helper, not this directly.
+ */
+@utility naira-sign {
+  position: relative;
+  display: inline-block;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset-inline: -0.07em;
+    top: 50%;
+    height: 0.2em;
+    transform: translateY(-50%);
+    border-block: 0.065em solid currentColor;
+  }
+}
+
+@utility figures {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  /* Sections carry their own top padding, so an anchor lands on the section's
+     ground. A margin here would leave a strip of the previous section showing.
+     A section without top padding sets scroll-mt itself. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--surface-2);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--brand);
+    border: 2px solid var(--surface-2);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-teal);
+  }
+  ::-webkit-scrollbar-corner {
+    background: var(--surface-2);
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: var(--brand) var(--surface-2);
+    }
+  }
+}
